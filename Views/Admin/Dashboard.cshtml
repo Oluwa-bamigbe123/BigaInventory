@@ -1,0 +1,100 @@
+﻿@model LocalBetBiga.Models.ViewModel.AdminVM
+
+@{
+    Layout = "_AdminDashboardLayout";
+    //ViewData["sidebarmodel"] = Model;
+}
+<link href="css/style.min.css" rel="stylesheet">
+<link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+<!-- Custom CSS -->
+<link href="~/js/chartist/dist/chartist.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+<link rel="stylesheet" href="~/js/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css" />
+<!-- Custom CSS -->
+<link href="css/style.min.css" rel="stylesheet">
+
+
+
+<h1>Welcome </h1>
+<hr />
+
+@*<div class="row justify-content-center">
+    <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Visit</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash">
+                        <canvas width="100" height="80"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ms-auto"><span class="counter text-success">659</span></li>
+            </ul>
+        </div>
+    </div>*@
+
+    <div id="ct-visits" style="height: 405px;">
+        <div class="chartist-tooltip" style="top: -17px; left: -12px; width:150px; height:35px">
+            <span class="chartist-tooltip-value">6</span>
+        </div>
+    </div>
+
+@*<div class="container">
+    <div class="card-deck justify-content-around">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <p><strong>Total Number Of Equipment In Store</strong></p>
+                <br />
+                <p>@Model.NumberOfEquipmentInStore</p>
+            </div>
+        </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <p><strong>Total Number Of Managers</strong></p>
+                <br />
+                <p>@Model.TotalOfNumberOfManagers</p>
+
+            </div>
+        </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <p><strong>Total Number Of Laptops In Store</strong></p>
+                <br />
+                <p>@Model.NumberOfLaptopInStore</p>
+            </div>
+        </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <p><strong>Total Number Of Printers</strong></p>
+                <br />
+                <p>@Model.NumberOfPrinterInStore</p>
+            </div>
+        </div>
+    </div>*@
+
+</div>
+
+
+<script src="~/js/jquery/dist/jquery.min.js"></script>
+
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/app-style-switcher.js"></script>
+<script src="~/js/jquery-sparkline/jquery.sparkline.min.js"></script>
+<!--Wave Effects -->
+<script src="~/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="~/js/custom.js"></script>
+<!--This page JavaScript -->
+<!--chartis chart-->
+<script src="~/js/chartist/dist/chartist.min.js"></script>
+<script src="~/js/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="~/js/pages/dashboards/dashboard1.js"></script>
+
+
