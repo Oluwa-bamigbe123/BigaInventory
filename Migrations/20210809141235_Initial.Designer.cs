@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBetBiga.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210806162457_equipments2")]
-    partial class equipments2
+    [Migration("20210809141235_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,26 +63,17 @@ namespace LocalBetBiga.Migrations
                     b.Property<int>("AdminId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Brand")
-                        .HasColumnType("text");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateAssigned")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("EquipmentType")
-                        .HasColumnType("text");
-
                     b.Property<int>("EquipmentsId")
                         .HasColumnType("int");
 
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ManagerUserName")
-                        .HasColumnType("text");
 
                     b.Property<int>("NumberOfEquipmentAssigned")
                         .HasColumnType("int");
@@ -98,36 +89,6 @@ namespace LocalBetBiga.Migrations
                     b.HasIndex("ManagerId");
 
                     b.ToTable("AdminEquipmentDistribution");
-                });
-
-            modelBuilder.Entity("LocalBetBiga.Models.Entities.AdminHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateAssigned")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("EquipmentName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ManagerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfEquipmentAssigned")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
-
-                    b.HasIndex("ManagerId");
-
-                    b.ToTable("AdminHistories");
                 });
 
             modelBuilder.Entity("LocalBetBiga.Models.Entities.Category", b =>
@@ -156,12 +117,12 @@ namespace LocalBetBiga.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EquipmentNumber")
-                        .HasColumnType("int");
-
                     b.Property<string>("EquipmentType")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("NumberInStore")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -211,16 +172,13 @@ namespace LocalBetBiga.Migrations
                     b.Property<DateTime>("DateAssigned")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("EquipmentsId")
+                    b.Property<int>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameOfAgentAssignedTo")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NameOfEquipmentAssigned")
                         .HasColumnType("text");
 
                     b.Property<int>("NumberOfEquipmentAssigned")
@@ -231,33 +189,11 @@ namespace LocalBetBiga.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EquipmentsId");
+                    b.HasIndex("EquipmentId");
 
                     b.HasIndex("ManagerId");
 
                     b.ToTable("ManagerEquipmentDistribution");
-                });
-
-            modelBuilder.Entity("LocalBetBiga.Models.Entities.ManagerHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AgentAddress")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AgentName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ManagerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ManagerId");
-
-                    b.ToTable("ManagerHistories");
                 });
 
             modelBuilder.Entity("LocalBetBiga.Models.Entities.AdminEquipmentDistribution", b =>
@@ -287,21 +223,6 @@ namespace LocalBetBiga.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LocalBetBiga.Models.Entities.AdminHistory", b =>
-                {
-                    b.HasOne("LocalBetBiga.Models.Entities.Admin", "Admin")
-                        .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LocalBetBiga.Models.Entities.Manager", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("LocalBetBiga.Models.Entities.Equipments", b =>
                 {
                     b.HasOne("LocalBetBiga.Models.Entities.Category", "Category")
@@ -313,21 +234,14 @@ namespace LocalBetBiga.Migrations
 
             modelBuilder.Entity("LocalBetBiga.Models.Entities.ManagerEquipmentDistribution", b =>
                 {
-                    b.HasOne("LocalBetBiga.Models.Entities.Equipments", "Equipments")
+                    b.HasOne("LocalBetBiga.Models.Entities.Equipments", "Equipment")
                         .WithMany()
-                        .HasForeignKey("EquipmentsId");
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LocalBetBiga.Models.Entities.Manager", "Manager")
                         .WithMany("ManagerEquipmentDistribution")
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LocalBetBiga.Models.Entities.ManagerHistory", b =>
-                {
-                    b.HasOne("LocalBetBiga.Models.Entities.Manager", "Manager")
-                        .WithMany()
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

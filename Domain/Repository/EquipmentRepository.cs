@@ -110,5 +110,15 @@ namespace LocalBetBiga.Domain.Repository
             _context.SaveChanges();
             return numberToBeAdded;
         }
+
+        public List<Equipments> FindByCategoryId(int id)
+        {
+            return _context.Equipments.Where(e => e.CategoryId == id).ToList();
+        }
+
+        public List<String> GetAllBrandByEquipmentType(string type)
+        {
+            return _context.Equipments.Where(e => e.EquipmentType == type).Select(e => e.Brand).ToList();
+        }
     }
 }

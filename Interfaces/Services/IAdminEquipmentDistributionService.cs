@@ -8,11 +8,12 @@ namespace LocalBetBiga.Interfaces.Services
 {
     public interface IAdminEquipmentDistributionService
     {
-        public AdminEquipmentDistribution CreateDistribution(int managerId, int numberOfEquipment, int equipmentId, int agentId, int categoryId, DateTime dateAssigned, string managerUserName);
+        public AdminEquipmentDistribution CreateDistribution(int adminId,int managerId, int numberOfEquipment, int equipmentId,  DateTime dateAssigned);
        
         public AdminEquipmentDistribution GetDistribution(int id);
         public List<AdminEquipmentDistribution> GetAll();
         public AdminEquipmentDistribution UpdateDistribution(AdminEquipmentDistribution distribution);
+        public List<String> GetAllAssignedBrandByEquipmentType(string type);
 
         public List<AdminEquipmentDistribution> GetAllAssignedEquipmentByManagerId(int agentId);
         public List<AdminEquipmentDistribution> GetAllAssignedEquipments();

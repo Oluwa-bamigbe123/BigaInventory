@@ -68,7 +68,7 @@ namespace LocalBetBiga.Controllers
             {
                 CategoryId = categoryId,
                 Brand = createEquipmentVM.Brand,
-                EquipmentNumber = createEquipmentVM.EquipmentNumber,
+                NumberInStore = createEquipmentVM.EquipmentNumber,
                 EquipmentType = createEquipmentVM.EquipmentType
             };
 
@@ -145,6 +145,62 @@ namespace LocalBetBiga.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(editEquipment);
+        }
+
+        [HttpPost]
+        public JsonResult GetEquipmentByCategoryId()
+        {
+            int categoryId = int.Parse(HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "categoryId").Value);
+
+            Console.WriteLine(categoryId);
+
+           List<Equipments> equipments =  _equipmentService.FindByCategoryId(categoryId);
+
+            List<CategoryEquipmentVM> vm = new List<CategoryEquipmentVM>();
+
+            foreach(var equipment in equipments)
+            {
+                CategoryEquipmentVM categoryEquipmentVM = new CategoryEquipmentVM
+                {
+                    Id = equipment.Id,
+                    EquipmentType = equipment.EquipmentType
+                };
+
+                vm.Add(categoryEquipmentVM);
+            }
+
+            var res = Json(vm);
+
+            return res;
+
+        }
+
+
+        [HttpPost]
+        public JsonResult GetBrandsByEquipmentType()
+        {
+            string equipmentType = HttpContext.Request.Cookies.FirstOrDefault(e => e.Key == "equipmentType").Value;
+
+            Console.WriteLine(equipmentType);
+
+            List<String> brands = _equipmentService.GetAllBrandByEquipmentType(equipmentType);
+
+            List<EquipmentBrandVM> vm = new List<EquipmentBrandVM>();
+
+            foreach (var brand in brands)
+            {
+                EquipmentBrandVM equipmentBrandVM = new EquipmentBrandVM
+                {
+                    BrandName = brand
+                   
+                };
+
+                vm.Add(equipmentBrandVM);
+            }
+
+            var res = Json(vm);
+
+            return res;
         }
     }
 }

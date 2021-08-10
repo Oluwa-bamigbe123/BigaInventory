@@ -29,30 +29,9 @@ namespace LocalBetBiga.Domain.Services
 
 
 
-        public AdminEquipmentDistribution CreateDistribution(int adminId, int numberOfEquipment, int equipmentId, int managerId, int categoryId, DateTime dateAssigned, string managerUserName)
+        public AdminEquipmentDistribution CreateDistribution(int adminId,int managerId, int numberOfEquipment, int equipmentId, DateTime dateAssigned)
         {
-            Admin admin = _adminRepository.GetAdmin(adminId);
-
-            admin.Id = adminId;
-
-            Manager manager = _managerRepository.GetManager(managerId);
-
-            manager.Id = managerId;
-
-            manager.UserName = _managerRepository.GetManager(managerId).UserName;
-
-            Equipments equipment = _equipmentRepository.FindById(equipmentId);
-
-            equipment.Id = equipmentId;
-
-            Category category = _categoryRepository.FindCategoryById(categoryId);
-
-            category.Id = categoryId;
-
-
-
-
-
+            
             AdminEquipmentDistribution adminEquipmentDistribution = new AdminEquipmentDistribution
             {
                 AdminId = adminId,
@@ -60,13 +39,6 @@ namespace LocalBetBiga.Domain.Services
                 DateAssigned = dateAssigned,
                 NumberOfEquipmentAssigned = numberOfEquipment,
                 EquipmentsId = equipmentId,
-                CategoryId = categoryId,
-                ManagerUserName = managerUserName
-               
-                
-                
-                
-
 
             };
 
@@ -81,10 +53,17 @@ namespace LocalBetBiga.Domain.Services
             return _adminEquipmentRepository.GetAll();
         }
 
+        public List<string> GetAllAssignedBrandByEquipmentType(string type)
+        {
+            return _adminEquipmentRepository.GetAllAssignedBrandByEquipmentType(type);
+        }
+
         public List<AdminEquipmentDistribution> GetAllAssignedEquipmentByManagerId(int managerId)
         {
             return _adminEquipmentRepository.GetAllAssignedEquipmentByManagerId(managerId);
         }
+
+       
 
         public List<AdminEquipmentDistribution> GetAllAssignedEquipments()
         {

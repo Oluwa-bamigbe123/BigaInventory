@@ -4,7 +4,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace LocalBetBiga.Migrations
 {
-    public partial class Intial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,7 +63,7 @@ namespace LocalBetBiga.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     EquipmentType = table.Column<string>(nullable: false),
-                    EquipmentNumber = table.Column<int>(nullable: false),
+                    NumberInStore = table.Column<int>(nullable: false),
                     Brand = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false)
                 },
@@ -74,58 +74,6 @@ namespace LocalBetBiga.Migrations
                         name: "FK_Equipments_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AdminHistories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    EquipmentName = table.Column<string>(nullable: true),
-                    NumberOfEquipmentAssigned = table.Column<int>(nullable: false),
-                    DateAssigned = table.Column<DateTime>(nullable: false),
-                    AdminId = table.Column<int>(nullable: false),
-                    ManagerId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdminHistories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AdminHistories_Admins_AdminId",
-                        column: x => x.AdminId,
-                        principalTable: "Admins",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AdminHistories_Managers_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "Managers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ManagerEquipmentDistribution",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    ManagerId = table.Column<int>(nullable: false),
-                    NameOfAgentAssignedTo = table.Column<string>(nullable: true),
-                    NameOfEquipmentAssigned = table.Column<string>(nullable: true),
-                    NumberOfEquipmentAssigned = table.Column<int>(nullable: false),
-                    DateAssigned = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ManagerEquipmentDistribution", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ManagerEquipmentDistribution_Managers_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "Managers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -172,6 +120,36 @@ namespace LocalBetBiga.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ManagerEquipmentDistribution",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    EquipmentId = table.Column<int>(nullable: false),
+                    ManagerId = table.Column<int>(nullable: false),
+                    NameOfAgentAssignedTo = table.Column<string>(nullable: true),
+                    NumberOfEquipmentAssigned = table.Column<int>(nullable: false),
+                    ShopAddress = table.Column<string>(nullable: true),
+                    DateAssigned = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ManagerEquipmentDistribution", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ManagerEquipmentDistribution_Equipments_EquipmentId",
+                        column: x => x.EquipmentId,
+                        principalTable: "Equipments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ManagerEquipmentDistribution_Managers_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "Managers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AdminEquipmentDistribution_AdminId",
                 table: "AdminEquipmentDistribution",
@@ -193,19 +171,14 @@ namespace LocalBetBiga.Migrations
                 column: "ManagerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AdminHistories_AdminId",
-                table: "AdminHistories",
-                column: "AdminId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AdminHistories_ManagerId",
-                table: "AdminHistories",
-                column: "ManagerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Equipments_CategoryId",
                 table: "Equipments",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagerEquipmentDistribution_EquipmentId",
+                table: "ManagerEquipmentDistribution",
+                column: "EquipmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ManagerEquipmentDistribution_ManagerId",
@@ -219,16 +192,13 @@ namespace LocalBetBiga.Migrations
                 name: "AdminEquipmentDistribution");
 
             migrationBuilder.DropTable(
-                name: "AdminHistories");
-
-            migrationBuilder.DropTable(
                 name: "ManagerEquipmentDistribution");
 
             migrationBuilder.DropTable(
-                name: "Equipments");
+                name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Admins");
+                name: "Equipments");
 
             migrationBuilder.DropTable(
                 name: "Managers");

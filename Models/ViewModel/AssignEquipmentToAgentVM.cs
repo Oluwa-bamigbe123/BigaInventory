@@ -14,7 +14,8 @@ namespace LocalBetBiga.Models.ViewModel
         public int ManagerId { get; set; }
         [Required]
         public string NameOfAgent { get; set; }
-        [Required]
+        
+        public string Brand { get; set; }
         public string NameOfEquipmentAssigned { get; set; }
 
         [Required]
@@ -24,7 +25,7 @@ namespace LocalBetBiga.Models.ViewModel
         public List<AdminEquipmentDistribution> Equipments { get; set; }
 
         public IEnumerable<SelectListItem> EquipmentNameSelectList { get; set; }
-
+        public IEnumerable<SelectListItem> EquipmentBrandSelectList { get; set; }
         public int NumberOfEquipmentAssigned { get; set; }
     }
 }

@@ -18,5 +18,8 @@ namespace LocalBetBiga.Interfaces.Repository
         public Equipments FindByTypeAndBrand(string type, string brand);
         public Equipments FindByType(string type);
 
+        public List<Equipments> FindByCategoryId(int id);
+        public List<String> GetAllBrandByEquipmentType(string type);
+
     }
 }

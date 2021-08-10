@@ -1,10 +1,10 @@
 ﻿using LocalBetBiga.Interfaces.Repository;
-using LocalBetBiga.Models;
 using LocalBetBiga.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LocalBetBiga.Models;
 
 namespace LocalBetBiga.Domain.Repository
 {
@@ -26,13 +26,22 @@ namespace LocalBetBiga.Domain.Repository
 
         public void DeleteManager(int id)
         {
+         
             var manager = _context.Managers.Find(id);
-            _context.Remove(manager);
-            _context.SaveChanges();
+            if(manager != null)
+            {
+                _context.Remove(manager);
+                _context.SaveChanges();
+            }
+          
         }
 
         public Manager FindByPhoneNumber(string phoneNumber)
         {
+            Models.Entities.Manager manager1 = new Models.Entities.Manager
+            {
+                PhoneNumber = phoneNumber
+            };
             return _context.Managers.FirstOrDefault(i => i.PhoneNumber == phoneNumber);
         }
 

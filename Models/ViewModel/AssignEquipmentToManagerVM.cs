@@ -8,10 +8,13 @@ namespace LocalBetBiga.Models.ViewModel
 {
     public class AssignEquipmentToManagerVM
     {
-        public int EquipmentId { get; set; }
+        public string EquipmentType { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public string BrandName { get;set; }
         public int ManagerId { get; set; }
         public int NumberOfEquipmentAssigned { get; set; }
-        public int CategoryId { get; set; }
         public DateTime DateAssigned { get; set; }
         public string ManagerUserName { get; set; }
         public IEnumerable<SelectListItem> EquipmentTypeSelectList { get; set; }

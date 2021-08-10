@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oMDTwd/ezWVbKgHkXkTlsC3nPfeT2/g3a4v++ZloxG3B1AWqx3S382EFPxNOANsTzM19aqCO+kUm9FCgwm6ECw==",
+  "dgSpecHash": "wNoFhDl03X9nuWL0xE8GoWRgE5BnOQjtLTddSMchDABxGWYjzwJCDpD/XfrdDdt+UsjMluW/rJnYEyqUZpteSA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Laptop City\\source\\repos\\LocalBetBiga\\LocalBetBiga.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Laptop City\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
@@ -40,6 +41,7 @@
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\Laptop City\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Laptop City\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512",

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<LocalBetBiga.Models.Entities.AdminEquipmentDistribution>
 
-@{ Layout = ""; }
+@{ Layout = "_AdminDashboardLayout";
+                ViewData["pageTitle"] = "Assign Equipment"; }
 
 
 <!DOCTYPE html>
@@ -30,6 +31,7 @@
             <thead>
                 <tr>
                     <th>Equipment Name</th>
+                    <th>Equipment Brand</th>
                     <th>Manager Name</th>
                     <th>Number Of Equipment Assigned</th>
                     <th>Date Assigned</th>
@@ -39,24 +41,25 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    <tr>
-                        <td>@obj.Equipments.EquipmentType</td>
-                        <td>@obj.Manager.UserName</td>
-                        <td>@obj.NumberOfEquipmentAssigned</td>
-                        <td>@obj.DateAssigned</td>
+                <tr>
+                    <td>@obj.Equipments.EquipmentType</td>
+                    <td>@obj.Equipments.Brand</td>
+                    <td>@obj.Manager.UserName</td>
+                    <td>@obj.NumberOfEquipmentAssigned</td>
+                    <td>@obj.DateAssigned</td>
 
 
-                        @*<td>
+                    @*<td>
 
-                                <a asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-warning">
-                                    Edit
-                                </a>
-                            </td>*@
-
-
+            <a asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-warning">
+                Edit
+            </a>
+        </td>*@
 
 
-                    </tr>
+
+
+                </tr>
 
 
 

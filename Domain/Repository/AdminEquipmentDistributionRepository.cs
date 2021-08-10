@@ -31,7 +31,10 @@ namespace LocalBetBiga.Domain.Repository
             return _context.AdminEquipmentDistribution.FirstOrDefault(i => i.Id == id);
         }
 
-
+        public List<String> GetAllAssignedBrandByEquipmentType(string type)
+        {
+            return _context.AdminEquipmentDistribution.Where(e => e.Equipments.EquipmentType == type).Select(e => e.Equipments.Brand).ToList();
+        }
 
         public List<AdminEquipmentDistribution> GetAll()
         {

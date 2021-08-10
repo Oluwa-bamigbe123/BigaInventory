@@ -1,4 +1,4 @@
-﻿@model LocalBetBiga.Models.Entities.Manager
+﻿@model LocalBetBiga.Models.ViewModel.ManagerVM.Create
 @{
     Layout = "";
 }
@@ -39,6 +39,11 @@
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Address" class="control-label"></label>

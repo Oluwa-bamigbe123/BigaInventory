@@ -18,5 +18,7 @@ namespace LocalBetBiga.Interfaces.Services
         public Equipments DeductEquipment(int equipmentId, int NumberOfEquipment);
         public Equipments UpdateEquipmentNumber(int id, int numberToBeAdded);
         public Equipments FindByTypeAndBrand(string type, string brand);
+        public List<Equipments> FindByCategoryId(int id);
+        public List<String> GetAllBrandByEquipmentType(string type);
     }
 }

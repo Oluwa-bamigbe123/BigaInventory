@@ -1,4 +1,4 @@
-﻿@model LocalBetBiga.Models.Entities.Admin
+﻿@model LocalBetBiga.Models.ViewModel.AdminVM.Create
 @{
     Layout = "";
 }
@@ -50,16 +50,21 @@
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                    <div class="card-footer foots">
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="form-group col-md-6">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="card-footer foots">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
 
-                            <a asp-action="Index" class=" btn btn-primary">Back</a>
-
-                        </div>
+                        <a asp-action="Index" class=" btn btn-primary">Back</a>
 
                     </div>
+
                 </div>
+            </div>
             </div>
 
         </div>

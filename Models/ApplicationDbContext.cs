@@ -20,7 +20,6 @@ namespace LocalBetBiga.Models
         public DbSet<AdminEquipmentDistribution> AdminEquipmentDistribution { get; set; }
 
         public DbSet<ManagerEquipmentDistribution> ManagerEquipmentDistribution { get; set; }
-        public DbSet<AdminHistory> AdminHistories { get; set; }
-        public DbSet<ManagerHistory> ManagerHistories { get; set; }
+
     }
 }

@@ -30,7 +30,7 @@ namespace LocalBetBiga.Domain.Services
         public Equipments DeductEquipment(int equipmentId, int numberOfEquipment)
         {
             Equipments equipment = _equipmentRepository.FindById(equipmentId);
-            equipment.EquipmentNumber -= numberOfEquipment;
+            equipment.NumberInStore -= numberOfEquipment;
             _equipmentRepository.UpdateEquipments(equipment);
 
             return equipment;
@@ -44,6 +44,11 @@ namespace LocalBetBiga.Domain.Services
         public void DeleteEquipment(int id)
         {
             _equipmentRepository.DeleteEquipment(id);
+        }
+
+        public List<Equipments> FindByCategoryId(int id)
+        {
+            return _equipmentRepository.FindByCategoryId(id);
         }
 
         public Equipments FindByTypeAndBrand(string type, string brand)
@@ -60,6 +65,12 @@ namespace LocalBetBiga.Domain.Services
         {
             return _equipmentRepository.GetAll();
         }
+
+        public List<string> GetAllBrandByEquipmentType(string type)
+        {
+            return _equipmentRepository.GetAllBrandByEquipmentType(type);
+        }
+
         public Equipments UpdateEquipment(Equipments equipments)
         {
             return _equipmentRepository.UpdateEquipments(equipments);
@@ -69,7 +80,7 @@ namespace LocalBetBiga.Domain.Services
         {
             Equipments equipments = _equipmentRepository.FindById(id);
 
-            equipments.EquipmentNumber += numberToBeAdded;
+            equipments.NumberInStore += numberToBeAdded;
 
             _equipmentRepository.UpdateEquipments(equipments);
 

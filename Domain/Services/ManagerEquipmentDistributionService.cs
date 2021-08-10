@@ -27,7 +27,7 @@ namespace LocalBetBiga.Domain.Services
 
         }
 
-        public ManagerEquipmentDistribution CreateDistribution(int managerId, int numberOfEquipment, string agentName, DateTime dateAssigned, string shopAddress, string nameOfEquipmentAssigned)
+        public ManagerEquipmentDistribution CreateDistribution(int managerId, int numberOfEquipment, string agentName, DateTime dateAssigned, string shopAddress, int equipmentId)
         {
             {
 
@@ -43,7 +43,7 @@ namespace LocalBetBiga.Domain.Services
                     NumberOfEquipmentAssigned = numberOfEquipment,
                     NameOfAgentAssignedTo = agentName,
                     ShopAddress = shopAddress,
-                    NameOfEquipmentAssigned = nameOfEquipmentAssigned
+                    EquipmentId = equipmentId
 
 
 

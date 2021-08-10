@@ -43,24 +43,33 @@ namespace LocalBetBiga
              {
                  option.LoginPath = "/Manager/Login";
                  option.Cookie.Name = "DotNetGuy";
+                 
 
              });
-            services.AddScoped<IEquipmentRepository, EquipmentRepository>();
-            services.AddScoped<IEquipmentService, EquipmentService>();
-            services.AddScoped<IManagerService, ManagerService>();
+
+            services.AddHttpContextAccessor();
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromMinutes(10);
+                option.Cookie.HttpOnly = false;
+                option.Cookie.IsEssential = true;
+            });
+
+
             services.AddScoped<IManagerRepository, ManagerRepository>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IAdminRepository, AdminRepository>();
-            services.AddScoped<IAdminEquipmentDistributionService, AdminEquipmentDistributionService>();
-            services.AddScoped<IAdminEquipmentDistributionRepository, AdminEquipmentDistributionRepository>();
+            services.AddScoped<IManagerService, ManagerService>();
+            services.AddScoped<IEquipmentService, EquipmentService>();
+            services.AddScoped<IEquipmentRepository, EquipmentRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IManagerEquipmentDistributionService, ManagerEquipmentDistributionService>();
+            services.AddScoped<IAdminEquipmentDistributionRepository, AdminEquipmentDistributionRepository>();
+            services.AddScoped<IAdminEquipmentDistributionService, AdminEquipmentDistributionService>();
             services.AddScoped<IManagerEquipmentDistributionRepository, ManagerEquipmentDistributionRepository>();
-            services.AddScoped<IAdminHistoryService, AdminHistoryService>();
-            services.AddScoped<IAdminHistoryRepository, AdminHistoryRepository>();
-            services.AddScoped<IManagerHistoryRepository, ManagerHistoryRepository>();
-            services.AddScoped<IManagerHistoryService, ManagerHistoryService>();
+            services.AddScoped<IManagerEquipmentDistributionService, ManagerEquipmentDistributionService>();
+         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +86,7 @@ namespace LocalBetBiga
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -84,6 +94,10 @@ namespace LocalBetBiga
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
