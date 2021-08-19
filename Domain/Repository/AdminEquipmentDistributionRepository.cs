@@ -33,7 +33,7 @@ namespace LocalBetBiga.Domain.Repository
 
         public List<String> GetAllAssignedBrandByEquipmentType(string type)
         {
-            return _context.AdminEquipmentDistribution.Where(e => e.Equipments.EquipmentType == type).Select(e => e.Equipments.Brand).ToList();
+            return _context.AdminEquipmentDistribution.Where(e => e.Equipments.EquipmentType == type).Select(e => e.Equipments.Brand).Distinct().ToList();
         }
 
         public List<AdminEquipmentDistribution> GetAll()
@@ -47,6 +47,11 @@ namespace LocalBetBiga.Domain.Repository
         .Where(ach => ach.ManagerId == managerId).ToList();
 
             return equipmentDistributions;
+        }
+
+        public AdminEquipmentDistribution FindByTypeAndBrand(string type, string brand)
+        {
+            return (AdminEquipmentDistribution)_context.AdminEquipmentDistribution.Where(t => t.Equipments.EquipmentType == type && t.Equipments.Brand == brand);
         }
         public List<AdminEquipmentDistribution> GetAllAssignedEquipments()
         {

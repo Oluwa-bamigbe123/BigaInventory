@@ -20,17 +20,18 @@ namespace LocalBetBiga.Controllers
         private readonly IManagerService _managerService;
         private readonly IManagerEquipmentDistributionService _managerEquipmentDistributionService;
         private readonly IAdminEquipmentDistributionService _adminEquipmentDistribution;
+        private readonly IEquipmentService _equipmentService;
 
 
-        public ManagerController(IManagerService managerService, IManagerEquipmentDistributionService managerEquipmentDistributionService, IAdminEquipmentDistributionService adminEquipmentDistributionService)
+        public ManagerController(IManagerService managerService, IManagerEquipmentDistributionService managerEquipmentDistributionService, IAdminEquipmentDistributionService adminEquipmentDistributionService, IEquipmentService equipmentService)
         {
             _managerService = managerService;
             _managerEquipmentDistributionService = managerEquipmentDistributionService;
             _adminEquipmentDistribution = adminEquipmentDistributionService;
-
+            _equipmentService = equipmentService;
 
         }
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View(_managerService.GetAll());
@@ -102,7 +103,7 @@ namespace LocalBetBiga.Controllers
                     var authenticationProperties = new AuthenticationProperties();
                     var principal = new ClaimsPrincipal(claimsIdentity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
-                    return RedirectToAction(nameof(Dashboard));
+                    return RedirectToAction(nameof(History));
                 }
             }
 
@@ -183,7 +184,10 @@ namespace LocalBetBiga.Controllers
         {
             managerId = int.Parse(User.Claims.FirstOrDefault(cl => cl.Type == ClaimTypes.NameIdentifier).Value);
 
+            
+
             return View(_adminEquipmentDistribution.GetAllAssignedEquipmentByManagerId(managerId));
+
         }
 
         [HttpGet]
@@ -196,17 +200,24 @@ namespace LocalBetBiga.Controllers
 
             int managerId = int.Parse(User.Claims.FirstOrDefault(cl => cl.Type == ClaimTypes.NameIdentifier).Value);
 
-
-
             List<AdminEquipmentDistribution> equipmentDistributions = _adminEquipmentDistribution.GetAllAssignedEquipmentByManagerId(managerId);
+
+            List<string> distinctEquipments = new List<string>();
 
             foreach (var equipment in equipmentDistributions)
             {
-                EquipmentNameSelectList.Add(new SelectListItem
+                if (!distinctEquipments.Contains(equipment.Equipments.EquipmentType))
                 {
-                    Value = equipment.Id.ToString(),
-                    Text = equipment.Equipments.EquipmentType
-                });
+                    distinctEquipments.Add((equipment.Equipments.EquipmentType));
+
+                    EquipmentNameSelectList.Add(new SelectListItem
+                    {
+                        Value = equipment.Equipments.EquipmentType,
+                        Text = equipment.Equipments.EquipmentType
+                    });
+                }
+
+                
             }
 
             assignEquipmentVM.EquipmentNameSelectList = EquipmentNameSelectList;
@@ -234,6 +245,7 @@ namespace LocalBetBiga.Controllers
                 {
                     BrandName = brand
 
+
                 };
 
                 vm.Add(equipmentBrandVM);
@@ -241,7 +253,49 @@ namespace LocalBetBiga.Controllers
 
             var res = Json(vm);
 
+            Console.WriteLine(vm);
             return res;
         }
+
+        [HttpPost]
+        public IActionResult AssignEquipmentToAgent(AssignEquipmentToAgentVM assignEquipmentVM)
+        {
+            ManagerEquipmentDistribution equipmentDistribution = new ManagerEquipmentDistribution();
+
+            Equipments equipment = _equipmentService.FindByTypeAndBrand(assignEquipmentVM.EquipmentType, assignEquipmentVM.BrandName);
+
+            int equipmentId = int.Parse(equipment.Id.ToString());
+
+            int managerId = int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+            string shopAddress = assignEquipmentVM.ShopAddress;
+
+
+            DateTime dateAssigned = DateTime.Parse(assignEquipmentVM.DateAssigned.ToString());
+
+            Manager manager = _managerService.GetManager(managerId);
+
+            List<AdminEquipmentDistribution> allEquipmentAssigned = _adminEquipmentDistribution.GetAllAssignedEquipmentByManagerId(managerId);
+
+            if (allEquipmentAssigned == null)
+            {
+                return View(assignEquipmentVM);
+            }
+            else
+            {
+
+
+                //_managerEquipmentDistributionService.DeductEquipment(equipmentId, assignEquipmentVM.NumberOfEquipmentAssigned, managerId);
+
+                _managerEquipmentDistributionService.CreateDistribution(managerId, assignEquipmentVM.NumberOfEquipmentAssigned, assignEquipmentVM.NameOfAgent, dateAssigned, shopAddress,equipmentId);
+
+
+
+            }
+
+            return RedirectToAction(nameof(History));
+
+        }
+
     }
 }

@@ -17,7 +17,8 @@ namespace LocalBetBiga.Interfaces.Services
 
         public ManagerEquipmentDistribution FindByAgentname(string agentName);
         public List<ManagerEquipmentDistribution> GetAllAssignedEquipmentByAgentId(int agentId);
+        public ManagerEquipmentDistribution GetEquipmentAssignedById(int equipmentId);
 
-        public ManagerEquipmentDistribution DeductEquipment(int equipmentId, int NumberOfEquipment);
+        public ManagerEquipmentDistribution DeductEquipment(int equipmentId, int NumberOfEquipment, int managerId);
     }
 }

@@ -63,7 +63,29 @@ if (equipmentSelect != null) {
         })
             .then(res => res.json())
             .then(res => {
+                if (equipmentSelect != null) {
+                    const distinctOptions = [];
 
+                    res.map(r => {
+                        if (!distinctOptions.includes(r.equipmentType)) {
+                            distinctOptions.push((r.equipmentType));
+                        }
+                    })
+
+
+
+                    distinctOptions.map(op => {
+                        let option = document.createElement('option');
+                        option.value = op;
+                        option.textContent = op;
+
+                        equipmentSelect.appendChild(option);
+
+                    })
+
+
+
+                }
                 console.log(res);
                 const brandSelect = document.querySelector('#BrandName');
 

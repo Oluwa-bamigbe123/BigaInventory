@@ -102,7 +102,7 @@ namespace LocalBetBiga.Controllers
                     var authenticationProperties = new AuthenticationProperties();
                     var principal = new ClaimsPrincipal(claimsIdentity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
-                    return RedirectToAction(nameof(Dashboard));
+                    return RedirectToAction(nameof(GetAllAssignedEquipment));
                 }
             }
 
@@ -121,7 +121,7 @@ namespace LocalBetBiga.Controllers
             return View();
 
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AssignEquipment()
         {
             AssignEquipmentToManagerVM assignEquipmentVM = new AssignEquipmentToManagerVM();
@@ -166,10 +166,11 @@ namespace LocalBetBiga.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AssignEquipment(AssignEquipmentToManagerVM assignEquipmentVM)
         {
-            Console.WriteLine(assignEquipmentVM);
+          
 
             Admin admin = new Admin();
 
@@ -203,10 +204,12 @@ namespace LocalBetBiga.Controllers
 
             }
 
-            return RedirectToAction(nameof(Dashboard));
+            return RedirectToAction(nameof(GetAllAssignedEquipment));
 
         }
 
+
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult GetAllAssignedEquipment()
         {
@@ -214,7 +217,7 @@ namespace LocalBetBiga.Controllers
             return View(_adminEquipmentDistribution.GetAllAssignedEquipments());
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult ExportToExcel()
         {
             List<AdminEquipmentDistribution> distributions = _adminEquipmentDistribution.GetAllAssignedEquipments();
@@ -223,7 +226,7 @@ namespace LocalBetBiga.Controllers
 
             foreach (var distribution in distributions)
             {
-                builder.AppendLine($"{distribution.Equipments.EquipmentType}, {distribution.Manager.UserName}, {distribution.NumberOfEquipmentAssigned}, {distribution.DateAssigned}");
+                builder.AppendLine($"{distribution.Equipments.EquipmentType}, {distribution.Equipments.Brand},{distribution.Manager.UserName}, {distribution.NumberOfEquipmentAssigned}, {distribution.DateAssigned}");
             }
 
             return File(Encoding.UTF8.GetBytes(builder.ToString()), "text/csv", "Distribution.csv");

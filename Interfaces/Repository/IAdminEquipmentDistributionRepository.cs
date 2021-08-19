@@ -16,6 +16,6 @@ namespace LocalBetBiga.Interfaces.Repository
         public List<AdminEquipmentDistribution> GetAllAssignedEquipmentByManagerId(int managerId);
 
         public List<AdminEquipmentDistribution> GetAllAssignedEquipments();
-
+        public AdminEquipmentDistribution FindByTypeAndBrand(string type, string brand);
     }
 }

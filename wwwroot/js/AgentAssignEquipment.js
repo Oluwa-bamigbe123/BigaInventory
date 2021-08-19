@@ -1,4 +1,5 @@
-﻿if (equipmentSelect != null) {
+﻿const equipmentSelect = document.querySelector('#EquipmentType');
+if (equipmentSelect != null) {
 
 
     equipmentSelect.addEventListener('change', async (e) => {

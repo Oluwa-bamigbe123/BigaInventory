@@ -10,12 +10,12 @@ namespace LocalBetBiga.Models.ViewModel
 {
     public class AssignEquipmentToAgentVM
     {
-       public int EquipmentId { get; set; }
+        public string EquipmentType { get; set; }
         public int ManagerId { get; set; }
         [Required]
         public string NameOfAgent { get; set; }
         
-        public string Brand { get; set; }
+        public string BrandName { get; set; }
         public string NameOfEquipmentAssigned { get; set; }
 
         [Required]

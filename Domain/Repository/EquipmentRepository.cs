@@ -2,6 +2,7 @@
 using LocalBetBiga.Interfaces.Repository;
 using LocalBetBiga.Models;
 using LocalBetBiga.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace LocalBetBiga.Domain.Repository
 
         public List<Equipments> GetAll()
         {
-            return _context.Equipments.ToList();
+            return _context.Equipments.Include(c => c.Category). ToList();
 
         }
 

@@ -54,9 +54,11 @@ namespace LocalBetBiga.Domain.Services
             }
         }
 
-        public ManagerEquipmentDistribution DeductEquipment(int equipmentId, int numberOfEquipment)
+        public ManagerEquipmentDistribution DeductEquipment(int equipmentId, int numberOfEquipment, int managerId)
         {
-            ManagerEquipmentDistribution equipment = _managerEquipmentDistributionRepository.FindById(equipmentId);
+            ManagerEquipmentDistribution equipment = _managerEquipmentDistributionRepository.GetEquipmentAssignedById(equipmentId);
+
+            Manager manager = _managerRepository.GetManager(managerId);
 
             equipment.NumberOfEquipmentAssigned -= numberOfEquipment;
 
@@ -69,6 +71,8 @@ namespace LocalBetBiga.Domain.Services
         {
             return _managerEquipmentDistributionRepository.FindByAgentName(agentName);
         }
+
+       
 
         public List<ManagerEquipmentDistribution> GetAll()
         {
@@ -85,11 +89,19 @@ namespace LocalBetBiga.Domain.Services
             return _managerEquipmentDistributionRepository.FindById(id);
         }
 
+        public Equipments GetEquipmentAssignedById(int equipmentId)
+        {
+            return _equipmentRepository.FindById(equipmentId);
+        }
+
         public ManagerEquipmentDistribution UpdateDistribution(ManagerEquipmentDistribution distribution)
         {
             return _managerEquipmentDistributionRepository.UpdateDistribution(distribution);
         }
 
-        
+        ManagerEquipmentDistribution IManagerEquipmentDistributionService.GetEquipmentAssignedById(int equipmentId)
+        {
+            throw new NotImplementedException();
+        }
     }
     }

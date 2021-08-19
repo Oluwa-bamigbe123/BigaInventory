@@ -15,8 +15,9 @@ namespace LocalBetBiga.Interfaces.Repository
         public ManagerEquipmentDistribution UpdateDistribution(ManagerEquipmentDistribution distribution);
         public ManagerEquipmentDistribution CreateDistribution(ManagerEquipmentDistribution Distribution);
         public ManagerEquipmentDistribution FindByAgentName(string agentName);
-
         public List<ManagerEquipmentDistribution> GetAllAssignedEquipmentByManagertId(int managerId);
+
+        public ManagerEquipmentDistribution GetEquipmentAssignedById(int equipmentId);
 
         public List<ManagerEquipmentDistribution> GetAllAssignedEquipments();
     }

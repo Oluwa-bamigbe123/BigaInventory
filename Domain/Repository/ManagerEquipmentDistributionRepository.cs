@@ -55,7 +55,7 @@ namespace LocalBetBiga.Domain.Repository
 
         public List<ManagerEquipmentDistribution> GetAllAssignedEquipmentByManagertId(int managerId)
         {
-            var manager = _context.ManagerEquipmentDistribution.Include(ach => ach.Manager)
+            var manager = _context.ManagerEquipmentDistribution.Include(ach => ach.Equipment)
         .Where(ach => ach.ManagerId == managerId).ToList();
 
             return manager;
@@ -66,10 +66,11 @@ namespace LocalBetBiga.Domain.Repository
             throw new NotImplementedException();
         }
 
+        public ManagerEquipmentDistribution GetEquipmentAssignedById(int equipmentId)
+        {
+            return _context.ManagerEquipmentDistribution.FirstOrDefault(eq => eq.EquipmentId == equipmentId);
+        }
+
       
-
-        
-
-     
     }
 }

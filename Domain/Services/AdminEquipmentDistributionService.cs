@@ -47,7 +47,11 @@ namespace LocalBetBiga.Domain.Services
 
         }
 
-       
+        public AdminEquipmentDistribution FindByTypeAndBrand(string type, string brand)
+        {
+            return _adminEquipmentRepository.FindByTypeAndBrand(type, brand);
+        }
+
         public List<AdminEquipmentDistribution> GetAll()
         {
             return _adminEquipmentRepository.GetAll();

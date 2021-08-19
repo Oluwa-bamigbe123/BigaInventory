@@ -39,7 +39,7 @@
                         <td>@obj.EquipmentType</td>
                         <td>@obj.NumberInStore</td>
                         <td>@obj.Brand</td>
-                        <td>@obj.Category</td>
+                        <td>@obj.Category.CategoryName</td>
 
                         <td>
 
@@ -83,7 +83,7 @@ else
                 Create New Equipment
             </a>
 
-            <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-success">
+            <a asp-controller="Admin" asp-action="GetAllAssignedEquipment" class="btn btn-success">
                 Return To Dashboard
             </a>
 

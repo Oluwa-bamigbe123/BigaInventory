@@ -26,7 +26,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Equipment Name</th>
+                    <th>Equipment Type</th>
+                    <th>Equipment Brand</th>
                     <th>Agent Name</th>
                     <th>Number Of Equipment Assigned</th>
                     <th>Agent Shop Address</th>
@@ -37,16 +38,17 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    <tr>
-                        <td>@obj.Equipment.EquipmentType</td>
-                        <td>@obj.NameOfAgentAssignedTo</td>
-                        <td>@obj.NumberOfEquipmentAssigned</td>
-                        <td>@obj.ShopAddress</td>
-                        <td>@obj.DateAssigned</td>
+                <tr>
+                    <td>@obj.Equipment.EquipmentType</td>
+                    <td>@obj.Equipment.Brand</td>
+                    <td>@obj.NameOfAgentAssignedTo</td>
+                    <td>@obj.NumberOfEquipmentAssigned</td>
+                    <td>@obj.ShopAddress</td>
+                    <td>@obj.DateAssigned</td>
 
 
 
-                    </tr>
+                </tr>
 
                 }
             </tbody>

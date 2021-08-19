@@ -5,6 +5,10 @@
 <form method="post" asp-action="AssignEquipment">
 
     <div class="form-group">
+        @if (ViewBag.Message != null)
+        {
+      <p class="text-danger">@ViewBag.Message</p> 
+        }
         <label asp-for="ManagerId" class="control-label">Select Manager</label>
         <select asp-for="ManagerId" asp-items="@Model.ManagerNameSelectList" class="form-control">
             <option disabled selected>--Select Manager--</option>
