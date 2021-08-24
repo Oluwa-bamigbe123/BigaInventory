@@ -194,11 +194,19 @@ namespace LocalBetBiga.Controllers
             }
             else
             {
-               
 
-                _adminEquipmentDistribution.CreateDistribution(adminId, assignEquipmentVM.ManagerId, assignEquipmentVM.NumberOfEquipmentAssigned, equipmentId, assignEquipmentVM.DateAssigned);
+                if (assignEquipmentVM.NumberOfEquipmentAssigned >= equipment.NumberInStore)
+                {
+                    //ViewBag.Message = "Add More Equipment Before Distribution";
+                    ModelState.AddModelError(nameof(assignEquipmentVM.NumberOfEquipmentAssigned), "Number of equipment to be assigned is more than the equipment to be added");
+                    return View();
+                }
+                else
+                {
+                    _adminEquipmentDistribution.CreateDistribution(adminId, assignEquipmentVM.ManagerId, assignEquipmentVM.NumberOfEquipmentAssigned, equipmentId, assignEquipmentVM.DateAssigned);
 
-                _equipmentService.DeductEquipment(equipmentId, assignEquipmentVM.NumberOfEquipmentAssigned);
+                    _equipmentService.DeductEquipment(equipmentId, assignEquipmentVM.NumberOfEquipmentAssigned);
+                }
 
 
 

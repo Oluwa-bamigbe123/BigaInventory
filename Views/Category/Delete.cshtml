@@ -30,11 +30,8 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <a asp-action="Delete" asp-controller="Category" class="btn btn-danger">
-            Delete
-        </a> 
-        <a asp-action="Index" asp-controller="Category" class="btn btn-warning">
-            Back To List
-        </a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-controller="Category" class="btn btn-success">Back </a>
     </form>
+ 
 </div>

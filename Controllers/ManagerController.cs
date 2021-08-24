@@ -228,12 +228,10 @@ namespace LocalBetBiga.Controllers
 
         }
 
-        [HttpPost]
-        public JsonResult GetBrandsByEquipmentType()
+        [HttpGet]
+        public JsonResult GetBrandsByEquipmentType(string id)
         {
-            string equipmentType = HttpContext.Request.Cookies.FirstOrDefault(e => e.Key == "equipmentType").Value;
-
-            Console.WriteLine(equipmentType);
+            var equipmentType = id.Replace('_', ' ');
 
             List<String> brands = _adminEquipmentDistribution.GetAllAssignedBrandByEquipmentType(equipmentType);
 
@@ -293,7 +291,7 @@ namespace LocalBetBiga.Controllers
 
             }
 
-            return RedirectToAction(nameof(History));
+            return RedirectToAction(nameof(GetAllAssignedEquipment));
 
         }
 

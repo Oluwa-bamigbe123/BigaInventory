@@ -147,18 +147,18 @@ namespace LocalBetBiga.Controllers
             return View(editEquipment);
         }
 
-        [HttpPost]
-        public JsonResult GetEquipmentByCategoryId()
+        [HttpGet]
+        public JsonResult GetEquipmentByCategoryId(int? id)
         {
-            int categoryId = int.Parse(HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "categoryId").Value);
+            int categoryId = id.Value;
 
-            Console.WriteLine(categoryId);
+            Console.WriteLine("Fetching.... ");
 
-           List<Equipments> equipments =  _equipmentService.FindByCategoryId(categoryId);
+            List<Equipments> equipments = _equipmentService.FindByCategoryId(categoryId);
 
             List<CategoryEquipmentVM> vm = new List<CategoryEquipmentVM>();
 
-            foreach(var equipment in equipments)
+            foreach (var equipment in equipments)
             {
                 CategoryEquipmentVM categoryEquipmentVM = new CategoryEquipmentVM
                 {
@@ -176,12 +176,12 @@ namespace LocalBetBiga.Controllers
         }
 
 
-        [HttpPost]
-        public JsonResult GetBrandsByEquipmentType()
+        [HttpGet]
+        public JsonResult GetBrandsByEquipmentType(string id)
         {
-            string equipmentType = HttpContext.Request.Cookies.FirstOrDefault(e => e.Key == "equipmentType").Value;
+           
+            var equipmentType = id.Replace('_', ' ');
 
-            Console.WriteLine(equipmentType);
 
             List<String> brands = _equipmentService.GetAllBrandByEquipmentType(equipmentType);
 
@@ -192,7 +192,7 @@ namespace LocalBetBiga.Controllers
                 EquipmentBrandVM equipmentBrandVM = new EquipmentBrandVM
                 {
                     BrandName = brand
-                   
+
                 };
 
                 vm.Add(equipmentBrandVM);
