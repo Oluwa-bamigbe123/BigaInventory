@@ -41,7 +41,7 @@ namespace LocalBetBiga
             })
              .AddCookie(option =>
              {
-                 option.LoginPath = "/Manager/Login";
+                 option.LoginPath = "/Admin/Login";
                  option.Cookie.Name = "DotNetGuy";
                  
 
@@ -68,6 +68,8 @@ namespace LocalBetBiga
             services.AddScoped<IAdminEquipmentDistributionService, AdminEquipmentDistributionService>();
             services.AddScoped<IManagerEquipmentDistributionRepository, ManagerEquipmentDistributionRepository>();
             services.AddScoped<IManagerEquipmentDistributionService, ManagerEquipmentDistributionService>();
+            services.AddScoped<IRetrivalRepository, RetrivalRepository>();
+            services.AddScoped<IRetrivalService, RetrivalService>();
          
 
         }

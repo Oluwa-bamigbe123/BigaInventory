@@ -87,3 +87,6 @@ C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Mana
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Manager\History.cshtml.g.cs
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Manager\ViewDetails.cshtml.g.cs
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\LocalBetBiga.csprojAssemblyReference.cache
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Retrival\Create.cshtml.g.cs
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Retrival\GetAllRetrievedEquipment.cshtml.g.cs
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Debug\net5.0\Razor\Views\Retrival\Index.cshtml.g.cs

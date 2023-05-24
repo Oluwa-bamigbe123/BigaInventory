@@ -87,3 +87,6 @@ C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\LocalBetBiga.d
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\ref\LocalBetBiga.dll
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\LocalBetBiga.pdb
 C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\LocalBetBiga.genruntimeconfig.cache
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\Razor\Views\Retrival\Create.cshtml.g.cs
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\Razor\Views\Retrival\GetAllRetrievedEquipment.cshtml.g.cs
+C:\Users\Laptop City\source\repos\LocalBetBiga\obj\Release\net5.0\Razor\Views\Retrival\Index.cshtml.g.cs
